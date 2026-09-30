@@ -1,0 +1,84 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+    function signedIn() { return request.auth != null; }
+    // Email/password accounts must verify their email first (mirrors requireUid in functions).
+    function verified() {
+      return request.auth.token.firebase.sign_in_provider != 'password' || request.auth.token.email_verified == true;
+    }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid && verified(); }
+    function serverOnly() { return ['premium', 'usage', 'dodo']; }
+    // Letters (any language) and single spaces only: no digits, symbols, emoji or markup.
+    function validName(n) { return n is string && n.size() >= 2 && n.size() <= 40 && n.matches('^[\\p{L}\\p{M}]+( [\\p{L}\\p{M}]+)*$'); }
+    // Profile fields the client may write, with type/size limits (server-only fields excluded).
+    function validProfile(d) {
+      return d.keys().hasOnly(['displayName', 'dob', 'birthTime', 'birthPlace', 'zodiac', 'focusAreas', 'preferredReaderId', 'language',
+                               'profileComplete', 'email', 'settings', 'createdAt', 'updatedAt', 'premium', 'usage', 'dodo'])
+        && (!('displayName' in d) || validName(d.displayName))
+        && (!('dob' in d) || (d.dob is string && d.dob.matches('(19|20)[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])')))
+        // Birth time is optional (null = "I don't know"); 24h HH:mm.
+        && (!('birthTime' in d) || d.birthTime == null || (d.birthTime is string && d.birthTime.matches('([01][0-9]|2[0-3]):[0-5][0-9]')))
+        // Birth place: a city/country name, letters, spaces and , . ' - only.
+        && (!('birthPlace' in d) || d.birthPlace == null || (d.birthPlace is string && d.birthPlace.size() <= 60 && d.birthPlace.matches("^[\\p{L}\\p{M} ,.'-]*$")))
+        && (!('zodiac' in d) || d.zodiac in ['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'])
+        && (!('focusAreas' in d) || (d.focusAreas is list && d.focusAreas.size() <= 5 && d.focusAreas.hasOnly(['love','career','growth','health','spirituality'])))
+        && (!('preferredReaderId' in d) || d.preferredReaderId in ['selene','luna','orion','aurora','mae','kael'])
+        && (!('language' in d) || d.language in ['en','hi'])
+        && (!('profileComplete' in d) || d.profileComplete is bool)
+        // The stored email can only be the caller's own (verified) sign-in email.
+        && (!('email' in d) || d.email == null || d.email == request.auth.token.email)
+        && (!('settings' in d) || (d.settings is map && d.settings.keys().hasOnly(['keepPalmPhotos']) && (!('keepPalmPhotos' in d.settings) || d.settings.keepPalmPhotos is bool)))
+        && (!('createdAt' in d) || d.createdAt is timestamp)
+        && (!('updatedAt' in d) || d.updatedAt is timestamp);
+    }
+    function validPosition(p) {
+      return p is map && p.keys().hasOnly(['label', 'meaning']) && p.label is string && p.label.size() <= 30 && p.meaning is string && p.meaning.size() <= 80;
+    }
+    function validSpread(d) {
+      return d.keys().hasOnly(['name', 'positions', 'createdAt'])
+        && d.name is string && d.name.size() >= 1 && d.name.size() <= 40
+        && d.positions is list && d.positions.size() >= 1 && d.positions.size() <= 10
+        && validPosition(d.positions[0])
+        && (d.positions.size() < 2 || validPosition(d.positions[1]))
+        && (d.positions.size() < 3 || validPosition(d.positions[2]))
+        && (d.positions.size() < 4 || validPosition(d.positions[3]))
+        && (d.positions.size() < 5 || validPosition(d.positions[4]))
+        && (d.positions.size() < 6 || validPosition(d.positions[5]))
+        && (d.positions.size() < 7 || validPosition(d.positions[6]))
+        && (d.positions.size() < 8 || validPosition(d.positions[7]))
+        && (d.positions.size() < 9 || validPosition(d.positions[8]))
+        && (d.positions.size() < 10 || validPosition(d.positions[9]));
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid) && !request.resource.data.keys().hasAny(serverOnly()) && validProfile(request.resource.data);
+      allow update: if isOwner(uid) && !request.resource.data.diff(resource.data).affectedKeys().hasAny(serverOnly()) && validProfile(request.resource.data);
+      allow delete: if false; // via deleteMyData function
+
+      // AI outputs are written by Cloud Functions only.
+      match /palmReadings/{id}  { allow read, delete: if isOwner(uid); allow write: if false; }
+      match /tarotReadings/{id} { allow read, delete: if isOwner(uid); allow write: if false; }
+      match /dailyCard/{id}     { allow read: if isOwner(uid); allow write: if false; }
+      match /insights/{id}      { allow read: if isOwner(uid); allow write: if false; }
+      match /chats/{chatId} {
+        allow read, delete: if isOwner(uid);
+        allow write: if false;
+        match /messages/{m} { allow read, delete: if isOwner(uid); allow write: if false; }
+      }
+      match /collection/{cardId} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && cardId.matches('(major|wands|cups|swords|pentacles)_[0-9]{2}')
+          && request.resource.data.keys().hasOnly(['savedAt']);
+      }
+      match /customSpreads/{id} {
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && validSpread(request.resource.data);
+      }
+    }
+    match /horoscopes/{id} { allow read: if signedIn() && verified(); allow write: if false; }
+    // Everything else (including server-side rate-limit docs) is closed.
+    match /{document=**} { allow read, write: if false; }
+  }
+}

@@ -1,0 +1,17 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function verified() {
+      return request.auth.token.firebase.sign_in_provider != 'password' || request.auth.token.email_verified == true;
+    }
+    match /palms/{uid}/{file} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid && verified();
+      allow create: if request.auth != null && request.auth.uid == uid && verified()
+        && file.matches('[A-Za-z0-9_-]{6,40}\\.jpg')
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+      allow update: if false;
+    }
+    match /{path=**} { allow read, write: if false; }
+  }
+}

@@ -1,0 +1,321 @@
+[
+ {
+  "id": "one_card",
+  "name": "One Card",
+  "subtitle": "Quick answers for daily guidance",
+  "description": "A single card to shine light on your question or your day.",
+  "category": [
+   "popular"
+  ],
+  "image": "spread_one",
+  "premium": false,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Guidance",
+    "meaning": "The core message for you right now"
+   }
+  ]
+ },
+ {
+  "id": "three_card",
+  "name": "Three Card Spread",
+  "subtitle": "Past · Present · Future",
+  "description": "Get a quick and clear insight into your current situation.",
+  "category": [
+   "popular"
+  ],
+  "image": "tarot_trio",
+  "premium": false,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Past",
+    "meaning": "Influences that brought you here"
+   },
+   {
+    "index": 1,
+    "label": "Present",
+    "meaning": "Where you stand now"
+   },
+   {
+    "index": 2,
+    "label": "Future",
+    "meaning": "Where the current path is leading"
+   }
+  ]
+ },
+ {
+  "id": "celtic_cross",
+  "name": "Celtic Cross",
+  "subtitle": "Deep & detailed insights",
+  "description": "A comprehensive 10-card spread for in-depth guidance.",
+  "category": [
+   "popular"
+  ],
+  "image": "spread_celtic",
+  "premium": true,
+  "layout": "celtic",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Present",
+    "meaning": "The heart of the matter"
+   },
+   {
+    "index": 1,
+    "label": "Challenge",
+    "meaning": "What crosses you"
+   },
+   {
+    "index": 2,
+    "label": "Foundation",
+    "meaning": "The root of the situation"
+   },
+   {
+    "index": 3,
+    "label": "Recent Past",
+    "meaning": "What is passing away"
+   },
+   {
+    "index": 4,
+    "label": "Crown",
+    "meaning": "Your highest potential"
+   },
+   {
+    "index": 5,
+    "label": "Near Future",
+    "meaning": "What is approaching"
+   },
+   {
+    "index": 6,
+    "label": "Self",
+    "meaning": "Your attitude and role"
+   },
+   {
+    "index": 7,
+    "label": "Environment",
+    "meaning": "People and outside influences"
+   },
+   {
+    "index": 8,
+    "label": "Hopes & Fears",
+    "meaning": "What you hope for or fear"
+   },
+   {
+    "index": 9,
+    "label": "Outcome",
+    "meaning": "The likely result if nothing changes"
+   }
+  ]
+ },
+ {
+  "id": "relationship",
+  "name": "Relationship Spread",
+  "subtitle": "Love & connection",
+  "description": "Explore your relationship, love life and emotional connections.",
+  "category": [
+   "popular",
+   "love"
+  ],
+  "image": "spread_relationship",
+  "premium": false,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "You",
+    "meaning": "Your energy in the relationship"
+   },
+   {
+    "index": 1,
+    "label": "Them",
+    "meaning": "Their energy in the relationship"
+   },
+   {
+    "index": 2,
+    "label": "Connection",
+    "meaning": "What binds you together"
+   },
+   {
+    "index": 3,
+    "label": "Challenge",
+    "meaning": "What needs attention"
+   },
+   {
+    "index": 4,
+    "label": "Potential",
+    "meaning": "Where this connection can grow"
+   }
+  ]
+ },
+ {
+  "id": "career",
+  "name": "Career Spread",
+  "subtitle": "Career & success",
+  "description": "Gain clarity on your career path, opportunities and challenges.",
+  "category": [
+   "popular",
+   "career"
+  ],
+  "image": "spread_career",
+  "premium": true,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Current Path",
+    "meaning": "Where your work life stands"
+   },
+   {
+    "index": 1,
+    "label": "Strengths",
+    "meaning": "Talents to lean on"
+   },
+   {
+    "index": 2,
+    "label": "Obstacles",
+    "meaning": "What holds you back"
+   },
+   {
+    "index": 3,
+    "label": "Opportunity",
+    "meaning": "An opening to watch for"
+   },
+   {
+    "index": 4,
+    "label": "Advice",
+    "meaning": "The action to take"
+   },
+   {
+    "index": 5,
+    "label": "Outcome",
+    "meaning": "Where this leads"
+   }
+  ]
+ },
+ {
+  "id": "daily",
+  "name": "Daily Guidance",
+  "subtitle": "One card wisdom",
+  "description": "One card to set the tone of your day.",
+  "category": [
+   "growth"
+  ],
+  "image": "spread_daily",
+  "premium": false,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Today",
+    "meaning": "The energy of your day"
+   }
+  ]
+ },
+ {
+  "id": "decision",
+  "name": "Decision Making",
+  "subtitle": "Pros & cons analysis",
+  "description": "Weigh two paths with clarity.",
+  "category": [
+   "career",
+   "growth"
+  ],
+  "image": "spread_decision",
+  "premium": false,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Situation",
+    "meaning": "The decision at hand"
+   },
+   {
+    "index": 1,
+    "label": "Option A",
+    "meaning": "Where the first path leads"
+   },
+   {
+    "index": 2,
+    "label": "Option B",
+    "meaning": "Where the second path leads"
+   },
+   {
+    "index": 3,
+    "label": "What You Need",
+    "meaning": "What will help you choose"
+   },
+   {
+    "index": 4,
+    "label": "Advice",
+    "meaning": "Guidance for the choice"
+   }
+  ]
+ },
+ {
+  "id": "new_beginnings",
+  "name": "New Beginnings",
+  "subtitle": "Fresh starts & opportunities",
+  "description": "Welcome a new chapter with intention.",
+  "category": [
+   "growth"
+  ],
+  "image": "spread_new_beginnings",
+  "premium": false,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Release",
+    "meaning": "What to let go of"
+   },
+   {
+    "index": 1,
+    "label": "Embrace",
+    "meaning": "What to welcome in"
+   },
+   {
+    "index": 2,
+    "label": "First Step",
+    "meaning": "How to begin"
+   }
+  ]
+ },
+ {
+  "id": "spiritual",
+  "name": "Spiritual Growth",
+  "subtitle": "Inner self & spiritual journey",
+  "description": "Connect with your inner wisdom.",
+  "category": [
+   "growth"
+  ],
+  "image": "spread_spiritual",
+  "premium": true,
+  "layout": "row",
+  "positions": [
+   {
+    "index": 0,
+    "label": "Inner Self",
+    "meaning": "Who you are at your core"
+   },
+   {
+    "index": 1,
+    "label": "Lesson",
+    "meaning": "What the universe is teaching you"
+   },
+   {
+    "index": 2,
+    "label": "Block",
+    "meaning": "What limits your growth"
+   },
+   {
+    "index": 3,
+    "label": "Path",
+    "meaning": "How to move forward"
+   }
+  ]
+ }
+]

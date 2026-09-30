@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "185397989989",
+    "project_id": "selene-ai-34251",
+    "storage_bucket": "selene-ai-34251.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185397989989:android:0b0f68aee7624f29616c8c",
+        "android_client_info": {
+          "package_name": "com.selene.selene"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185397989989-20npbpvf6nj8l5oi6a02govq7lmbke09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selene.selene",
+            "certificate_hash": "1b205702a2f8290164f52fcd7d701c7d7d746177"
+          }
+        },
+        {
+          "client_id": "185397989989-9v11uf0je1chel969s90mbukjh9htlvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selene.selene",
+            "certificate_hash": "23966d617356f4cd81bf8107b28b91372551171a"
+          }
+        },
+        {
+          "client_id": "185397989989-i885c9m1rs9phlu2ffein9t0luqqeg9i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selene.selene",
+            "certificate_hash": "275ed1e642409105e966c8a1b39a02af7e7c7c3d"
+          }
+        },
+        {
+          "client_id": "185397989989-ttqurcranm56ko5fqlq17fdirlk8iklk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selene.selene",
+            "certificate_hash": "13b40256b7675559ec863e30d7ef2b99a621307a"
+          }
+        },
+        {
+          "client_id": "185397989989-v4bkmh4oktn5jpmiagb4nm1ftfg1lrjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selene.selene",
+            "certificate_hash": "76815aa36785a0517a76b614ac502d48690bec3c"
+          }
+        },
+        {
+          "client_id": "185397989989-9h0rcams4cjo7ascr63pr6o3koc5h51o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ-LAXw4lmws3ytR9W1Ndx0itMGfz2wqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "185397989989-9h0rcams4cjo7ascr63pr6o3koc5h51o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "185397989989-j5njov8pfkau6kkbv1sfj2dmb4pim5ds.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.selene.selene"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

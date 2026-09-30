@@ -1,0 +1,4 @@
+# Cloudflare Pages project for the Flutter web build (backend stays on Firebase).
+name = "selene-web"
+pages_build_output_dir = "build/web"
+compatibility_date = "2026-09-01"
